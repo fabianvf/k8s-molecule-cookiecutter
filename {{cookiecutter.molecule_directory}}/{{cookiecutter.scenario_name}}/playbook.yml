@@ -1,5 +1,9 @@
 ---
 - name: Converge
-  hosts: all
-  roles:
-    - role: {{ cookiecutter.role_name }}
+  hosts: localhost
+  connection: local
+  tasks:
+    - debug: msg={{ lookup("k8s", cluster_info=item) }}
+      with_items:
+        - 'api_groups'
+        - 'version'

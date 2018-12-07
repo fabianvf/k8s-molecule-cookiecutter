@@ -1,0 +1,8 @@
+---
+
+- name: Verify
+  hosts: localhost
+  connection: local
+  tasks:
+    - assert:
+        that: "'apps' in lookup('k8s', cluster_info='api_groups')"
